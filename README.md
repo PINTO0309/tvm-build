@@ -163,3 +163,14 @@ commands:
 
 TVMC - TVM driver command-line interface
 ```
+```bash
+$ wget https://github.com/onnx/models/raw/main/vision/classification/resnet/model/resnet50-v2-7.onnx
+
+$ python -m tvm.driver.tvmc compile \
+--target "llvm" \
+--output resnet50-v2-7-tvm.tar \
+resnet50-v2-7.onnx
+
+One or more operators have not been tuned. Please tune your model for better performance. Use DEBUG logging level to see more details.
+```
+![image](https://user-images.githubusercontent.com/33194443/155353724-b440fc7c-60e7-41fd-b684-5ef33021c556.png)
