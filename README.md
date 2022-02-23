@@ -140,5 +140,4 @@ scipy
 Intel-Media-SDK
 Intel iHD GPU (iGPU) support
 OpenCL
-Docker
 ```
