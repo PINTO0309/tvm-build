@@ -1,16 +1,21 @@
 # tvm-build
-https://github.com/apache/tvm
-## 1. build
+1. https://github.com/apache/tvm
+2. https://tvm.apache.org/docs/tutorial/install.html
+## 1. Pull
+```bash
+docker pull pinto0309/ubuntu2004-cuda114-cudnn8-tensorrt823-tvm:09dev0
+```
+## 2. Build
 ```bash
 docker build -t pinto0309/ubuntu2004-cuda114-cudnn8-tensorrt823-tvm:09dev0 .
 ```
-## 2. run
+## 3. Run
 ```bash
 docker run --rm -it --gpus all \
 -v `pwd`:/home/user/workdir \
 pinto0309/ubuntu2004-cuda114-cudnn8-tensorrt823-tvm:09dev0
 ```
-## 3. summary
+## 4. TVM Summary
 ```
 --   ---------------- Summary ----------------
 --   CMake version         : 3.16.3
@@ -91,4 +96,49 @@ pinto0309/ubuntu2004-cuda114-cudnn8-tensorrt823-tvm:09dev0
 --    USE_THRUST                         : OFF
 --    USE_VITIS_AI                       : OFF
 --    USE_VULKAN                         : OFF
+```
+## 5. Environment
+```
+TVM v0.9.dev0
+Python 3.8+
+TensorFlow v2.8.0+
+PyTorch v1.10.0+
+TorchVision
+TorchAudio
+OpenVINO 2021.4.582+
+TensorRT 8.2+
+trtexec
+pycuda 2021.1
+tensorflowjs
+coremltools
+paddle2onnx
+onnx
+onnxruntime
+onnxruntime-extensions
+onnx_graphsurgeon
+onnx-simplifier
+onnxconverter-common
+onnxmltools
+onnx-tensorrt
+onnx2json
+json2onnx
+tf2onnx
+torch2trt
+onnx-tf
+tensorflow-datasets
+tf_slim
+edgetpu_compiler
+tflite2tensorflow
+openvino2tensorflow
+gdown
+pandas
+matplotlib
+paddlepaddle
+paddle2onnx
+pycocotools
+scipy
+Intel-Media-SDK
+Intel iHD GPU (iGPU) support
+OpenCL
+Docker
 ```
