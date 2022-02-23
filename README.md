@@ -270,6 +270,7 @@ class='n04040759 radiator' with probability=0.000262
 ```bash
 $ python -m tvm.driver.tvmc tune --help
 usage: tvmc tune [-h]
+--target TARGET
 -o OUTPUT
 [--early-stopping EARLY_STOPPING]
 [--min-repeat-ms MIN_REPEAT_MS]
@@ -278,7 +279,8 @@ usage: tvmc tune [-h]
 [--parallel PARALLEL]
 [--repeat REPEAT]
 [--rpc-key RPC_KEY]
-[--rpc-tracker RPC_TRACKER] --target TARGET [--target-example_target_hook-from_device TARGET_EXAMPLE_TARGET_HOOK_FROM_DEVICE]
+[--rpc-tracker RPC_TRACKER]
+[--target-example_target_hook-from_device TARGET_EXAMPLE_TARGET_HOOK_FROM_DEVICE]
 [--target-example_target_hook-libs TARGET_EXAMPLE_TARGET_HOOK_LIBS]
 [--target-example_target_hook-model TARGET_EXAMPLE_TARGET_HOOK_MODEL]
 [--target-example_target_hook-tag TARGET_EXAMPLE_TARGET_HOOK_TAG]
