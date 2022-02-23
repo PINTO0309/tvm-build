@@ -267,3 +267,776 @@ class='n02124075 Egyptian cat' with probability=0.019712
 class='n02129604 tiger, Panthera tigris' with probability=0.001215
 class='n04040759 radiator' with probability=0.000262
 ```
+```bash
+$ python -m tvm.driver.tvmc tune --help
+usage: tvmc tune [-h]
+-o OUTPUT
+[--early-stopping EARLY_STOPPING]
+[--min-repeat-ms MIN_REPEAT_MS]
+[--model-format {keras,onnx,pb,tflite,pytorch,paddle}]
+[--number NUMBER]
+[--parallel PARALLEL]
+[--repeat REPEAT]
+[--rpc-key RPC_KEY]
+[--rpc-tracker RPC_TRACKER] --target TARGET [--target-example_target_hook-from_device TARGET_EXAMPLE_TARGET_HOOK_FROM_DEVICE]
+[--target-example_target_hook-libs TARGET_EXAMPLE_TARGET_HOOK_LIBS]
+[--target-example_target_hook-model TARGET_EXAMPLE_TARGET_HOOK_MODEL]
+[--target-example_target_hook-tag TARGET_EXAMPLE_TARGET_HOOK_TAG]
+[--target-example_target_hook-device TARGET_EXAMPLE_TARGET_HOOK_DEVICE]
+[--target-example_target_hook-keys TARGET_EXAMPLE_TARGET_HOOK_KEYS]
+[--target-ext_dev-from_device TARGET_EXT_DEV_FROM_DEVICE]
+[--target-ext_dev-libs TARGET_EXT_DEV_LIBS]
+[--target-ext_dev-model TARGET_EXT_DEV_MODEL]
+[--target-ext_dev-system-lib TARGET_EXT_DEV_SYSTEM_LIB]
+[--target-ext_dev-tag TARGET_EXT_DEV_TAG]
+[--target-ext_dev-device TARGET_EXT_DEV_DEVICE]
+[--target-ext_dev-keys TARGET_EXT_DEV_KEYS]
+[--target-llvm-fast-math TARGET_LLVM_FAST_MATH]
+[--target-llvm-opt-level TARGET_LLVM_OPT_LEVEL]
+[--target-llvm-unpacked-api TARGET_LLVM_UNPACKED_API]
+[--target-llvm-from_device TARGET_LLVM_FROM_DEVICE]
+[--target-llvm-fast-math-ninf TARGET_LLVM_FAST_MATH_NINF]
+[--target-llvm-mattr TARGET_LLVM_MATTR]
+[--target-llvm-num-cores TARGET_LLVM_NUM_CORES]
+[--target-llvm-libs TARGET_LLVM_LIBS]
+[--target-llvm-fast-math-nsz TARGET_LLVM_FAST_MATH_NSZ]
+[--target-llvm-link-params TARGET_LLVM_LINK_PARAMS]
+[--target-llvm-interface-api TARGET_LLVM_INTERFACE_API]
+[--target-llvm-fast-math-contract TARGET_LLVM_FAST_MATH_CONTRACT]
+[--target-llvm-system-lib TARGET_LLVM_SYSTEM_LIB]
+[--target-llvm-tag TARGET_LLVM_TAG]
+[--target-llvm-mtriple TARGET_LLVM_MTRIPLE]
+[--target-llvm-model TARGET_LLVM_MODEL]
+[--target-llvm-mfloat-abi TARGET_LLVM_MFLOAT_ABI]
+[--target-llvm-mcpu TARGET_LLVM_MCPU]
+[--target-llvm-device TARGET_LLVM_DEVICE]
+[--target-llvm-runtime TARGET_LLVM_RUNTIME]
+[--target-llvm-fast-math-arcp TARGET_LLVM_FAST_MATH_ARCP]
+[--target-llvm-fast-math-reassoc TARGET_LLVM_FAST_MATH_REASSOC]
+[--target-llvm-mabi TARGET_LLVM_MABI]
+[--target-llvm-keys TARGET_LLVM_KEYS]
+[--target-llvm-fast-math-nnan TARGET_LLVM_FAST_MATH_NNAN]
+[--target-hybrid-from_device TARGET_HYBRID_FROM_DEVICE]
+[--target-hybrid-libs TARGET_HYBRID_LIBS]
+[--target-hybrid-model TARGET_HYBRID_MODEL]
+[--target-hybrid-system-lib TARGET_HYBRID_SYSTEM_LIB]
+[--target-hybrid-tag TARGET_HYBRID_TAG]
+[--target-hybrid-device TARGET_HYBRID_DEVICE]
+[--target-hybrid-keys TARGET_HYBRID_KEYS]
+[--target-aocl-from_device TARGET_AOCL_FROM_DEVICE]
+[--target-aocl-libs TARGET_AOCL_LIBS]
+[--target-aocl-model TARGET_AOCL_MODEL]
+[--target-aocl-system-lib TARGET_AOCL_SYSTEM_LIB]
+[--target-aocl-tag TARGET_AOCL_TAG]
+[--target-aocl-device TARGET_AOCL_DEVICE]
+[--target-aocl-keys TARGET_AOCL_KEYS]
+[--target-nvptx-max_num_threads TARGET_NVPTX_MAX_NUM_THREADS]
+[--target-nvptx-thread_warp_size TARGET_NVPTX_THREAD_WARP_SIZE]
+[--target-nvptx-from_device TARGET_NVPTX_FROM_DEVICE]
+[--target-nvptx-libs TARGET_NVPTX_LIBS]
+[--target-nvptx-model TARGET_NVPTX_MODEL]
+[--target-nvptx-system-lib TARGET_NVPTX_SYSTEM_LIB]
+[--target-nvptx-mtriple TARGET_NVPTX_MTRIPLE]
+[--target-nvptx-tag TARGET_NVPTX_TAG]
+[--target-nvptx-mcpu TARGET_NVPTX_MCPU]
+[--target-nvptx-device TARGET_NVPTX_DEVICE]
+[--target-nvptx-keys TARGET_NVPTX_KEYS]
+[--target-opencl-max_num_threads TARGET_OPENCL_MAX_NUM_THREADS]
+[--target-opencl-thread_warp_size TARGET_OPENCL_THREAD_WARP_SIZE]
+[--target-opencl-from_device TARGET_OPENCL_FROM_DEVICE]
+[--target-opencl-libs TARGET_OPENCL_LIBS]
+[--target-opencl-model TARGET_OPENCL_MODEL]
+[--target-opencl-system-lib TARGET_OPENCL_SYSTEM_LIB]
+[--target-opencl-tag TARGET_OPENCL_TAG]
+[--target-opencl-device TARGET_OPENCL_DEVICE]
+[--target-opencl-keys TARGET_OPENCL_KEYS]
+[--target-metal-max_num_threads TARGET_METAL_MAX_NUM_THREADS]
+[--target-metal-thread_warp_size TARGET_METAL_THREAD_WARP_SIZE]
+[--target-metal-from_device TARGET_METAL_FROM_DEVICE]
+[--target-metal-libs TARGET_METAL_LIBS]
+[--target-metal-keys TARGET_METAL_KEYS]
+[--target-metal-model TARGET_METAL_MODEL]
+[--target-metal-system-lib TARGET_METAL_SYSTEM_LIB]
+[--target-metal-tag TARGET_METAL_TAG]
+[--target-metal-device TARGET_METAL_DEVICE]
+[--target-metal-max_function_args TARGET_METAL_MAX_FUNCTION_ARGS]
+[--target-webgpu-max_num_threads TARGET_WEBGPU_MAX_NUM_THREADS]
+[--target-webgpu-from_device TARGET_WEBGPU_FROM_DEVICE]
+[--target-webgpu-libs TARGET_WEBGPU_LIBS]
+[--target-webgpu-model TARGET_WEBGPU_MODEL]
+[--target-webgpu-system-lib TARGET_WEBGPU_SYSTEM_LIB]
+[--target-webgpu-tag TARGET_WEBGPU_TAG]
+[--target-webgpu-device TARGET_WEBGPU_DEVICE]
+[--target-webgpu-keys TARGET_WEBGPU_KEYS]
+[--target-rocm-max_num_threads TARGET_ROCM_MAX_NUM_THREADS]
+[--target-rocm-thread_warp_size TARGET_ROCM_THREAD_WARP_SIZE]
+[--target-rocm-from_device TARGET_ROCM_FROM_DEVICE]
+[--target-rocm-libs TARGET_ROCM_LIBS]
+[--target-rocm-model TARGET_ROCM_MODEL]
+[--target-rocm-system-lib TARGET_ROCM_SYSTEM_LIB]
+[--target-rocm-mtriple TARGET_ROCM_MTRIPLE]
+[--target-rocm-tag TARGET_ROCM_TAG]
+[--target-rocm-mcpu TARGET_ROCM_MCPU]
+[--target-rocm-device TARGET_ROCM_DEVICE]
+[--target-rocm-keys TARGET_ROCM_KEYS]
+[--target-vulkan-max_num_threads TARGET_VULKAN_MAX_NUM_THREADS]
+[--target-vulkan-thread_warp_size TARGET_VULKAN_THREAD_WARP_SIZE]
+[--target-vulkan-max_block_size_z TARGET_VULKAN_MAX_BLOCK_SIZE_Z]
+[--target-vulkan-max_per_stage_descriptor_storage_buffer TARGET_VULKAN_MAX_PER_STAGE_DESCRIPTOR_STORAGE_BUFFER]
+[--target-vulkan-driver_version TARGET_VULKAN_DRIVER_VERSION]
+[--target-vulkan-from_device TARGET_VULKAN_FROM_DEVICE]
+[--target-vulkan-supports_16bit_buffer TARGET_VULKAN_SUPPORTS_16BIT_BUFFER]
+[--target-vulkan-libs TARGET_VULKAN_LIBS]
+[--target-vulkan-supported_subgroup_operations TARGET_VULKAN_SUPPORTED_SUBGROUP_OPERATIONS]
+[--target-vulkan-supports_dedicated_allocation TARGET_VULKAN_SUPPORTS_DEDICATED_ALLOCATION]
+[--target-vulkan-max_storage_buffer_range TARGET_VULKAN_MAX_STORAGE_BUFFER_RANGE]
+[--target-vulkan-max_push_constants_size TARGET_VULKAN_MAX_PUSH_CONSTANTS_SIZE]
+[--target-vulkan-supports_push_descriptor TARGET_VULKAN_SUPPORTS_PUSH_DESCRIPTOR]
+[--target-vulkan-supports_int64 TARGET_VULKAN_SUPPORTS_INT64]
+[--target-vulkan-supports_float32 TARGET_VULKAN_SUPPORTS_FLOAT32]
+[--target-vulkan-model TARGET_VULKAN_MODEL]
+[--target-vulkan-max_block_size_x TARGET_VULKAN_MAX_BLOCK_SIZE_X]
+[--target-vulkan-system-lib TARGET_VULKAN_SYSTEM_LIB]
+[--target-vulkan-max_block_size_y TARGET_VULKAN_MAX_BLOCK_SIZE_Y]
+[--target-vulkan-tag TARGET_VULKAN_TAG]
+[--target-vulkan-supports_int8 TARGET_VULKAN_SUPPORTS_INT8]
+[--target-vulkan-max_spirv_version TARGET_VULKAN_MAX_SPIRV_VERSION]
+[--target-vulkan-vulkan_api_version TARGET_VULKAN_VULKAN_API_VERSION]
+[--target-vulkan-supports_8bit_buffer TARGET_VULKAN_SUPPORTS_8BIT_BUFFER]
+[--target-vulkan-device_type TARGET_VULKAN_DEVICE_TYPE]
+[--target-vulkan-supports_int32 TARGET_VULKAN_SUPPORTS_INT32]
+[--target-vulkan-device TARGET_VULKAN_DEVICE]
+[--target-vulkan-driver_name TARGET_VULKAN_DRIVER_NAME]
+[--target-vulkan-supports_float16 TARGET_VULKAN_SUPPORTS_FLOAT16]
+[--target-vulkan-supports_storage_buffer_storage_class TARGET_VULKAN_SUPPORTS_STORAGE_BUFFER_STORAGE_CLASS]
+[--target-vulkan-supports_float64 TARGET_VULKAN_SUPPORTS_FLOAT64]
+[--target-vulkan-max_uniform_buffer_range TARGET_VULKAN_MAX_UNIFORM_BUFFER_RANGE]
+[--target-vulkan-device_name TARGET_VULKAN_DEVICE_NAME]
+[--target-vulkan-keys TARGET_VULKAN_KEYS]
+[--target-vulkan-max_shared_memory_per_block TARGET_VULKAN_MAX_SHARED_MEMORY_PER_BLOCK]
+[--target-vulkan-supports_int16 TARGET_VULKAN_SUPPORTS_INT16]
+[--target-cuda-max_num_threads TARGET_CUDA_MAX_NUM_THREADS]
+[--target-cuda-thread_warp_size TARGET_CUDA_THREAD_WARP_SIZE]
+[--target-cuda-from_device TARGET_CUDA_FROM_DEVICE]
+[--target-cuda-arch TARGET_CUDA_ARCH]
+[--target-cuda-libs TARGET_CUDA_LIBS]
+[--target-cuda-shared_memory_per_block TARGET_CUDA_SHARED_MEMORY_PER_BLOCK]
+[--target-cuda-model TARGET_CUDA_MODEL]
+[--target-cuda-system-lib TARGET_CUDA_SYSTEM_LIB]
+[--target-cuda-tag TARGET_CUDA_TAG]
+[--target-cuda-device TARGET_CUDA_DEVICE]
+[--target-cuda-mcpu TARGET_CUDA_MCPU]
+[--target-cuda-max_threads_per_block TARGET_CUDA_MAX_THREADS_PER_BLOCK]
+[--target-cuda-registers_per_block TARGET_CUDA_REGISTERS_PER_BLOCK]
+[--target-cuda-keys TARGET_CUDA_KEYS]
+[--target-sdaccel-from_device TARGET_SDACCEL_FROM_DEVICE]
+[--target-sdaccel-libs TARGET_SDACCEL_LIBS]
+[--target-sdaccel-model TARGET_SDACCEL_MODEL]
+[--target-sdaccel-system-lib TARGET_SDACCEL_SYSTEM_LIB]
+[--target-sdaccel-tag TARGET_SDACCEL_TAG]
+[--target-sdaccel-device TARGET_SDACCEL_DEVICE]
+[--target-sdaccel-keys TARGET_SDACCEL_KEYS]
+[--target-composite-from_device TARGET_COMPOSITE_FROM_DEVICE]
+[--target-composite-libs TARGET_COMPOSITE_LIBS]
+[--target-composite-devices TARGET_COMPOSITE_DEVICES]
+[--target-composite-model TARGET_COMPOSITE_MODEL]
+[--target-composite-tag TARGET_COMPOSITE_TAG]
+[--target-composite-device TARGET_COMPOSITE_DEVICE]
+[--target-composite-keys TARGET_COMPOSITE_KEYS]
+[--target-stackvm-from_device TARGET_STACKVM_FROM_DEVICE]
+[--target-stackvm-libs TARGET_STACKVM_LIBS]
+[--target-stackvm-model TARGET_STACKVM_MODEL]
+[--target-stackvm-system-lib TARGET_STACKVM_SYSTEM_LIB]
+[--target-stackvm-tag TARGET_STACKVM_TAG]
+[--target-stackvm-device TARGET_STACKVM_DEVICE]
+[--target-stackvm-keys TARGET_STACKVM_KEYS]
+[--target-aocl_sw_emu-from_device TARGET_AOCL_SW_EMU_FROM_DEVICE]
+[--target-aocl_sw_emu-libs TARGET_AOCL_SW_EMU_LIBS]
+[--target-aocl_sw_emu-model TARGET_AOCL_SW_EMU_MODEL]
+[--target-aocl_sw_emu-system-lib TARGET_AOCL_SW_EMU_SYSTEM_LIB]
+[--target-aocl_sw_emu-tag TARGET_AOCL_SW_EMU_TAG]
+[--target-aocl_sw_emu-device TARGET_AOCL_SW_EMU_DEVICE]
+[--target-aocl_sw_emu-keys TARGET_AOCL_SW_EMU_KEYS]
+[--target-c-unpacked-api TARGET_C_UNPACKED_API]
+[--target-c-from_device TARGET_C_FROM_DEVICE]
+[--target-c-libs TARGET_C_LIBS]
+[--target-c-constants-byte-alignment TARGET_C_CONSTANTS_BYTE_ALIGNMENT]
+[--target-c-executor TARGET_C_EXECUTOR]
+[--target-c-link-params TARGET_C_LINK_PARAMS]
+[--target-c-model TARGET_C_MODEL]
+[--target-c-workspace-byte-alignment TARGET_C_WORKSPACE_BYTE_ALIGNMENT]
+[--target-c-system-lib TARGET_C_SYSTEM_LIB]
+[--target-c-tag TARGET_C_TAG]
+[--target-c-interface-api TARGET_C_INTERFACE_API]
+[--target-c-mcpu TARGET_C_MCPU]
+[--target-c-device TARGET_C_DEVICE]
+[--target-c-runtime TARGET_C_RUNTIME]
+[--target-c-keys TARGET_C_KEYS]
+[--target-c-march TARGET_C_MARCH]
+[--target-hexagon-from_device TARGET_HEXAGON_FROM_DEVICE]
+[--target-hexagon-libs TARGET_HEXAGON_LIBS]
+[--target-hexagon-mattr TARGET_HEXAGON_MATTR]
+[--target-hexagon-model TARGET_HEXAGON_MODEL]
+[--target-hexagon-llvm-options TARGET_HEXAGON_LLVM_OPTIONS]
+[--target-hexagon-mtriple TARGET_HEXAGON_MTRIPLE]
+[--target-hexagon-system-lib TARGET_HEXAGON_SYSTEM_LIB]
+[--target-hexagon-mcpu TARGET_HEXAGON_MCPU]
+[--target-hexagon-device TARGET_HEXAGON_DEVICE]
+[--target-hexagon-tag TARGET_HEXAGON_TAG]
+[--target-hexagon-link-params TARGET_HEXAGON_LINK_PARAMS]
+[--target-hexagon-keys TARGET_HEXAGON_KEYS]
+[--target-host TARGET_HOST]
+[--timeout TIMEOUT]
+[--trials TRIALS]
+[--tuning-records PATH]
+[--desired-layout {NCHW,NHWC}]
+[--enable-autoscheduler]
+[--cache-line-bytes CACHE_LINE_BYTES]
+[--num-cores NUM_CORES]
+[--vector-unit-bytes VECTOR_UNIT_BYTES]
+[--max-shared-memory-per-block MAX_SHARED_MEMORY_PER_BLOCK]
+[--max-local-memory-per-block MAX_LOCAL_MEMORY_PER_BLOCK]
+[--max-threads-per-block MAX_THREADS_PER_BLOCK]
+[--max-vthread-extent MAX_VTHREAD_EXTENT]
+[--warp-size WARP_SIZE]
+[--include-simple-tasks]
+[--log-estimated-latency]
+[--tuner {ga,gridsearch,random,xgb,xgb_knob,xgb-rank}]
+[--input-shapes INPUT_SHAPES]
+FILE
+
+positional arguments:
+    FILE
+        path to the input model file
+
+optional arguments:
+    -h, --help
+        show this help message and exit
+    --early-stopping EARLY_STOPPING
+        minimum number of trials before early stopping
+    --min-repeat-ms MIN_REPEAT_MS
+        minimum time to run each trial, in milliseconds.
+        Defaults to 0 on x86 and 1000 on all other targets
+    --model-format {keras,onnx,pb,tflite,pytorch,paddle}
+        specify input model format
+    --number NUMBER
+        number of runs a single repeat is made of.
+        The final number of tuning executions is: (1 + number * repeat)
+    -o OUTPUT, --output OUTPUT
+        output file to store the tuning records for the tuning process
+    --parallel PARALLEL
+        the maximum number of parallel devices to use when tuning
+    --repeat REPEAT
+        how many times to repeat each measurement
+    --rpc-key RPC_KEY
+        the RPC tracker key of the target device.
+        Required when --rpc-tracker is provided.
+    --rpc-tracker RPC_TRACKER
+        hostname (required) and port (optional, defaults to 9090) of the RPC tracker,
+        e.g. '192.168.0.100:9999'
+    --target TARGET
+        compilation target as plain string, inline JSON or path to a JSON file
+    --target-host TARGET_HOST
+        the host compilation target, defaults to 'llvm'
+    --timeout TIMEOUT
+        compilation timeout, in seconds
+    --trials TRIALS
+        the maximum number of tuning trials to perform
+    --tuning-records PATH
+        path to an auto-tuning log file by AutoTVM.
+    --desired-layout {NCHW,NHWC}
+        change the data layout of the whole graph
+    --enable-autoscheduler
+        enable tuning the graph through the autoscheduler
+    --input-shapes INPUT_SHAPES
+        specify non-generic shapes for model to run,
+        format is "input_name:[dim1,dim2,...,dimn] input_name2:[dim1,dim2]"
+
+    target example_target_hook:
+    --target-example_target_hook-from_device TARGET_EXAMPLE_TARGET_HOOK_FROM_DEVICE
+        target example_target_hook from_device
+    --target-example_target_hook-libs TARGET_EXAMPLE_TARGET_HOOK_LIBS
+        target example_target_hook libs options
+    --target-example_target_hook-model TARGET_EXAMPLE_TARGET_HOOK_MODEL
+        target example_target_hook model string
+    --target-example_target_hook-tag TARGET_EXAMPLE_TARGET_HOOK_TAG
+        target example_target_hook tag string
+    --target-example_target_hook-device TARGET_EXAMPLE_TARGET_HOOK_DEVICE
+        target example_target_hook device string
+    --target-example_target_hook-keys TARGET_EXAMPLE_TARGET_HOOK_KEYS
+        target example_target_hook keys options
+
+    target ext_dev:
+    --target-ext_dev-from_device TARGET_EXT_DEV_FROM_DEVICE
+        target ext_dev from_device
+    --target-ext_dev-libs TARGET_EXT_DEV_LIBS
+        target ext_dev libs options
+    --target-ext_dev-model TARGET_EXT_DEV_MODEL
+        target ext_dev model string
+    --target-ext_dev-system-lib TARGET_EXT_DEV_SYSTEM_LIB
+        target ext_dev system-lib
+    --target-ext_dev-tag TARGET_EXT_DEV_TAG
+        target ext_dev tag string
+    --target-ext_dev-device TARGET_EXT_DEV_DEVICE
+        target ext_dev device string
+    --target-ext_dev-keys TARGET_EXT_DEV_KEYS
+        target ext_dev keys options
+
+    target llvm:
+    --target-llvm-fast-math TARGET_LLVM_FAST_MATH
+        target llvm fast-math
+    --target-llvm-opt-level TARGET_LLVM_OPT_LEVEL
+        target llvm opt-level
+    --target-llvm-unpacked-api TARGET_LLVM_UNPACKED_API
+        target llvm unpacked-api
+    --target-llvm-from_device TARGET_LLVM_FROM_DEVICE
+        target llvm from_device
+    --target-llvm-fast-math-ninf TARGET_LLVM_FAST_MATH_NINF
+        target llvm fast-math-ninf
+    --target-llvm-mattr TARGET_LLVM_MATTR
+        target llvm mattr options
+    --target-llvm-num-cores TARGET_LLVM_NUM_CORES
+        target llvm num-cores
+    --target-llvm-libs TARGET_LLVM_LIBS
+        target llvm libs options
+    --target-llvm-fast-math-nsz TARGET_LLVM_FAST_MATH_NSZ
+        target llvm fast-math-nsz
+    --target-llvm-link-params TARGET_LLVM_LINK_PARAMS
+        target llvm link-params
+    --target-llvm-interface-api TARGET_LLVM_INTERFACE_API
+        target llvm interface-api string
+    --target-llvm-fast-math-contract TARGET_LLVM_FAST_MATH_CONTRACT
+        target llvm fast-math-contract
+    --target-llvm-system-lib TARGET_LLVM_SYSTEM_LIB
+        target llvm system-lib
+    --target-llvm-tag TARGET_LLVM_TAG
+        target llvm tag string
+    --target-llvm-mtriple TARGET_LLVM_MTRIPLE
+        target llvm mtriple string
+    --target-llvm-model TARGET_LLVM_MODEL
+        target llvm model string
+    --target-llvm-mfloat-abi TARGET_LLVM_MFLOAT_ABI
+        target llvm mfloat-abi string
+    --target-llvm-mcpu TARGET_LLVM_MCPU
+        target llvm mcpu string
+    --target-llvm-device TARGET_LLVM_DEVICE
+        target llvm device string
+    --target-llvm-runtime TARGET_LLVM_RUNTIME
+        target llvm runtime string
+    --target-llvm-fast-math-arcp TARGET_LLVM_FAST_MATH_ARCP
+        target llvm fast-math-arcp
+    --target-llvm-fast-math-reassoc TARGET_LLVM_FAST_MATH_REASSOC
+        target llvm fast-math-reassoc
+    --target-llvm-mabi TARGET_LLVM_MABI
+        target llvm mabi string
+    --target-llvm-keys TARGET_LLVM_KEYS
+        target llvm keys options
+    --target-llvm-fast-math-nnan TARGET_LLVM_FAST_MATH_NNAN
+        target llvm fast-math-nnan
+
+    target hybrid:
+    --target-hybrid-from_device TARGET_HYBRID_FROM_DEVICE
+        target hybrid from_device
+    --target-hybrid-libs TARGET_HYBRID_LIBS
+        target hybrid libs options
+    --target-hybrid-model TARGET_HYBRID_MODEL
+        target hybrid model string
+    --target-hybrid-system-lib TARGET_HYBRID_SYSTEM_LIB
+        target hybrid system-lib
+    --target-hybrid-tag TARGET_HYBRID_TAG
+        target hybrid tag string
+    --target-hybrid-device TARGET_HYBRID_DEVICE
+        target hybrid device string
+    --target-hybrid-keys TARGET_HYBRID_KEYS
+        target hybrid keys options
+
+    target aocl:
+    --target-aocl-from_device TARGET_AOCL_FROM_DEVICE
+        target aocl from_device
+    --target-aocl-libs TARGET_AOCL_LIBS
+        target aocl libs options
+    --target-aocl-model TARGET_AOCL_MODEL
+        target aocl model string
+    --target-aocl-system-lib TARGET_AOCL_SYSTEM_LIB
+        target aocl system-lib
+    --target-aocl-tag TARGET_AOCL_TAG
+        target aocl tag string
+    --target-aocl-device TARGET_AOCL_DEVICE
+        target aocl device string
+    --target-aocl-keys TARGET_AOCL_KEYS
+        target aocl keys options
+
+    target nvptx:
+    --target-nvptx-max_num_threads TARGET_NVPTX_MAX_NUM_THREADS
+        target nvptx max_num_threads
+    --target-nvptx-thread_warp_size TARGET_NVPTX_THREAD_WARP_SIZE
+        target nvptx thread_warp_size
+    --target-nvptx-from_device TARGET_NVPTX_FROM_DEVICE
+        target nvptx from_device
+    --target-nvptx-libs TARGET_NVPTX_LIBS
+        target nvptx libs options
+    --target-nvptx-model TARGET_NVPTX_MODEL
+        target nvptx model string
+    --target-nvptx-system-lib TARGET_NVPTX_SYSTEM_LIB
+        target nvptx system-lib
+    --target-nvptx-mtriple TARGET_NVPTX_MTRIPLE
+        target nvptx mtriple string
+    --target-nvptx-tag TARGET_NVPTX_TAG
+        target nvptx tag string
+    --target-nvptx-mcpu TARGET_NVPTX_MCPU
+        target nvptx mcpu string
+    --target-nvptx-device TARGET_NVPTX_DEVICE
+        target nvptx device string
+    --target-nvptx-keys TARGET_NVPTX_KEYS
+        target nvptx keys options
+
+    target opencl:
+    --target-opencl-max_num_threads TARGET_OPENCL_MAX_NUM_THREADS
+        target opencl max_num_threads
+    --target-opencl-thread_warp_size TARGET_OPENCL_THREAD_WARP_SIZE
+        target opencl thread_warp_size
+    --target-opencl-from_device TARGET_OPENCL_FROM_DEVICE
+        target opencl from_device
+    --target-opencl-libs TARGET_OPENCL_LIBS
+        target opencl libs options
+    --target-opencl-model TARGET_OPENCL_MODEL
+        target opencl model string
+    --target-opencl-system-lib TARGET_OPENCL_SYSTEM_LIB
+        target opencl system-lib
+    --target-opencl-tag TARGET_OPENCL_TAG
+        target opencl tag string
+    --target-opencl-device TARGET_OPENCL_DEVICE
+        target opencl device string
+    --target-opencl-keys TARGET_OPENCL_KEYS
+        target opencl keys options
+
+    target metal:
+    --target-metal-max_num_threads TARGET_METAL_MAX_NUM_THREADS
+        target metal max_num_threads
+    --target-metal-thread_warp_size TARGET_METAL_THREAD_WARP_SIZE
+        target metal thread_warp_size
+    --target-metal-from_device TARGET_METAL_FROM_DEVICE
+        target metal from_device
+    --target-metal-libs TARGET_METAL_LIBS
+        target metal libs options
+    --target-metal-keys TARGET_METAL_KEYS
+        target metal keys options
+    --target-metal-model TARGET_METAL_MODEL
+        target metal model string
+    --target-metal-system-lib TARGET_METAL_SYSTEM_LIB
+        target metal system-lib
+    --target-metal-tag TARGET_METAL_TAG
+        target metal tag string
+    --target-metal-device TARGET_METAL_DEVICE
+        target metal device string
+    --target-metal-max_function_args TARGET_METAL_MAX_FUNCTION_ARGS
+        target metal max_function_args
+
+    target webgpu:
+    --target-webgpu-max_num_threads TARGET_WEBGPU_MAX_NUM_THREADS
+        target webgpu max_num_threads
+    --target-webgpu-from_device TARGET_WEBGPU_FROM_DEVICE
+        target webgpu from_device
+    --target-webgpu-libs TARGET_WEBGPU_LIBS
+        target webgpu libs options
+    --target-webgpu-model TARGET_WEBGPU_MODEL
+        target webgpu model string
+    --target-webgpu-system-lib TARGET_WEBGPU_SYSTEM_LIB
+        target webgpu system-lib
+    --target-webgpu-tag TARGET_WEBGPU_TAG
+        target webgpu tag string
+    --target-webgpu-device TARGET_WEBGPU_DEVICE
+        target webgpu device string
+    --target-webgpu-keys TARGET_WEBGPU_KEYS
+        target webgpu keys options
+
+    target rocm:
+    --target-rocm-max_num_threads TARGET_ROCM_MAX_NUM_THREADS
+        target rocm max_num_threads
+    --target-rocm-thread_warp_size TARGET_ROCM_THREAD_WARP_SIZE
+        target rocm thread_warp_size
+    --target-rocm-from_device TARGET_ROCM_FROM_DEVICE
+        target rocm from_device
+    --target-rocm-libs TARGET_ROCM_LIBS
+        target rocm libs options
+    --target-rocm-model TARGET_ROCM_MODEL
+        target rocm model string
+    --target-rocm-system-lib TARGET_ROCM_SYSTEM_LIB
+        target rocm system-lib
+    --target-rocm-mtriple TARGET_ROCM_MTRIPLE
+        target rocm mtriple string
+    --target-rocm-tag TARGET_ROCM_TAG
+        target rocm tag string
+    --target-rocm-mcpu TARGET_ROCM_MCPU
+        target rocm mcpu string
+    --target-rocm-device TARGET_ROCM_DEVICE
+        target rocm device string
+    --target-rocm-keys TARGET_ROCM_KEYS
+        target rocm keys options
+
+    target vulkan:
+    --target-vulkan-max_num_threads TARGET_VULKAN_MAX_NUM_THREADS
+        target vulkan max_num_threads
+    --target-vulkan-thread_warp_size TARGET_VULKAN_THREAD_WARP_SIZE
+        target vulkan thread_warp_size
+    --target-vulkan-max_block_size_z TARGET_VULKAN_MAX_BLOCK_SIZE_Z
+        target vulkan max_block_size_z
+    --target-vulkan-max_per_stage_descriptor_storage_buffer TARGET_VULKAN_MAX_PER_STAGE_DESCRIPTOR_STORAGE_BUFFER
+        target vulkan max_per_stage_descriptor_storage_buffer
+    --target-vulkan-driver_version TARGET_VULKAN_DRIVER_VERSION
+        target vulkan driver_version
+    --target-vulkan-from_device TARGET_VULKAN_FROM_DEVICE
+        target vulkan from_device
+    --target-vulkan-supports_16bit_buffer TARGET_VULKAN_SUPPORTS_16BIT_BUFFER
+        target vulkan supports_16bit_buffer
+    --target-vulkan-libs TARGET_VULKAN_LIBS
+        target vulkan libs options
+    --target-vulkan-supported_subgroup_operations TARGET_VULKAN_SUPPORTED_SUBGROUP_OPERATIONS
+        target vulkan supported_subgroup_operations
+    --target-vulkan-supports_dedicated_allocation TARGET_VULKAN_SUPPORTS_DEDICATED_ALLOCATION
+        target vulkan supports_dedicated_allocation
+    --target-vulkan-max_storage_buffer_range TARGET_VULKAN_MAX_STORAGE_BUFFER_RANGE
+        target vulkan max_storage_buffer_range
+    --target-vulkan-max_push_constants_size TARGET_VULKAN_MAX_PUSH_CONSTANTS_SIZE
+        target vulkan max_push_constants_size
+    --target-vulkan-supports_push_descriptor TARGET_VULKAN_SUPPORTS_PUSH_DESCRIPTOR
+        target vulkan supports_push_descriptor
+    --target-vulkan-supports_int64 TARGET_VULKAN_SUPPORTS_INT64
+        target vulkan supports_int64
+    --target-vulkan-supports_float32 TARGET_VULKAN_SUPPORTS_FLOAT32
+        target vulkan supports_float32
+    --target-vulkan-model TARGET_VULKAN_MODEL
+        target vulkan model string
+    --target-vulkan-max_block_size_x TARGET_VULKAN_MAX_BLOCK_SIZE_X
+        target vulkan max_block_size_x
+    --target-vulkan-system-lib TARGET_VULKAN_SYSTEM_LIB
+        target vulkan system-lib
+    --target-vulkan-max_block_size_y TARGET_VULKAN_MAX_BLOCK_SIZE_Y
+        target vulkan max_block_size_y
+    --target-vulkan-tag TARGET_VULKAN_TAG
+        target vulkan tag string
+    --target-vulkan-supports_int8 TARGET_VULKAN_SUPPORTS_INT8
+        target vulkan supports_int8
+    --target-vulkan-max_spirv_version TARGET_VULKAN_MAX_SPIRV_VERSION
+        target vulkan max_spirv_version
+    --target-vulkan-vulkan_api_version TARGET_VULKAN_VULKAN_API_VERSION
+        target vulkan vulkan_api_version
+    --target-vulkan-supports_8bit_buffer TARGET_VULKAN_SUPPORTS_8BIT_BUFFER
+        target vulkan supports_8bit_buffer
+    --target-vulkan-device_type TARGET_VULKAN_DEVICE_TYPE
+        target vulkan device_type string
+    --target-vulkan-supports_int32 TARGET_VULKAN_SUPPORTS_INT32
+        target vulkan supports_int32
+    --target-vulkan-device TARGET_VULKAN_DEVICE
+        target vulkan device string
+    --target-vulkan-driver_name TARGET_VULKAN_DRIVER_NAME
+        target vulkan driver_name string
+    --target-vulkan-supports_float16 TARGET_VULKAN_SUPPORTS_FLOAT16
+        target vulkan supports_float16
+    --target-vulkan-supports_storage_buffer_storage_class TARGET_VULKAN_SUPPORTS_STORAGE_BUFFER_STORAGE_CLASS
+        target vulkan supports_storage_buffer_storage_class
+    --target-vulkan-supports_float64 TARGET_VULKAN_SUPPORTS_FLOAT64
+        target vulkan supports_float64
+    --target-vulkan-max_uniform_buffer_range TARGET_VULKAN_MAX_UNIFORM_BUFFER_RANGE
+        target vulkan max_uniform_buffer_range
+    --target-vulkan-device_name TARGET_VULKAN_DEVICE_NAME
+        target vulkan device_name string
+    --target-vulkan-keys TARGET_VULKAN_KEYS
+        target vulkan keys options
+    --target-vulkan-max_shared_memory_per_block TARGET_VULKAN_MAX_SHARED_MEMORY_PER_BLOCK
+        target vulkan max_shared_memory_per_block
+    --target-vulkan-supports_int16 TARGET_VULKAN_SUPPORTS_INT16
+        target vulkan supports_int16
+
+    target cuda:
+    --target-cuda-max_num_threads TARGET_CUDA_MAX_NUM_THREADS
+        target cuda max_num_threads
+    --target-cuda-thread_warp_size TARGET_CUDA_THREAD_WARP_SIZE
+        target cuda thread_warp_size
+    --target-cuda-from_device TARGET_CUDA_FROM_DEVICE
+        target cuda from_device
+    --target-cuda-arch TARGET_CUDA_ARCH
+        target cuda arch string
+    --target-cuda-libs TARGET_CUDA_LIBS
+        target cuda libs options
+    --target-cuda-shared_memory_per_block TARGET_CUDA_SHARED_MEMORY_PER_BLOCK
+        target cuda shared_memory_per_block
+    --target-cuda-model TARGET_CUDA_MODEL
+        target cuda model string
+    --target-cuda-system-lib TARGET_CUDA_SYSTEM_LIB
+        target cuda system-lib
+    --target-cuda-tag TARGET_CUDA_TAG
+        target cuda tag string
+    --target-cuda-device TARGET_CUDA_DEVICE
+        target cuda device string
+    --target-cuda-mcpu TARGET_CUDA_MCPU
+        target cuda mcpu string
+    --target-cuda-max_threads_per_block TARGET_CUDA_MAX_THREADS_PER_BLOCK
+        target cuda max_threads_per_block
+    --target-cuda-registers_per_block TARGET_CUDA_REGISTERS_PER_BLOCK
+        target cuda registers_per_block
+    --target-cuda-keys TARGET_CUDA_KEYS
+        target cuda keys options
+
+    target sdaccel:
+    --target-sdaccel-from_device TARGET_SDACCEL_FROM_DEVICE
+        target sdaccel from_device
+    --target-sdaccel-libs TARGET_SDACCEL_LIBS
+        target sdaccel libs options
+    --target-sdaccel-model TARGET_SDACCEL_MODEL
+        target sdaccel model string
+    --target-sdaccel-system-lib TARGET_SDACCEL_SYSTEM_LIB
+        target sdaccel system-lib
+    --target-sdaccel-tag TARGET_SDACCEL_TAG
+        target sdaccel tag string
+    --target-sdaccel-device TARGET_SDACCEL_DEVICE
+        target sdaccel device string
+    --target-sdaccel-keys TARGET_SDACCEL_KEYS
+        target sdaccel keys options
+
+    target composite:
+    --target-composite-from_device TARGET_COMPOSITE_FROM_DEVICE
+        target composite from_device
+    --target-composite-libs TARGET_COMPOSITE_LIBS
+        target composite libs options
+    --target-composite-devices TARGET_COMPOSITE_DEVICES
+        target composite devices options
+    --target-composite-model TARGET_COMPOSITE_MODEL
+        target composite model string
+    --target-composite-tag TARGET_COMPOSITE_TAG
+        target composite tag string
+    --target-composite-device TARGET_COMPOSITE_DEVICE
+        target composite device string
+    --target-composite-keys TARGET_COMPOSITE_KEYS
+        target composite keys options
+
+    target stackvm:
+    --target-stackvm-from_device TARGET_STACKVM_FROM_DEVICE
+        target stackvm from_device
+    --target-stackvm-libs TARGET_STACKVM_LIBS
+        target stackvm libs options
+    --target-stackvm-model TARGET_STACKVM_MODEL
+        target stackvm model string
+    --target-stackvm-system-lib TARGET_STACKVM_SYSTEM_LIB
+        target stackvm system-lib
+    --target-stackvm-tag TARGET_STACKVM_TAG
+        target stackvm tag string
+    --target-stackvm-device TARGET_STACKVM_DEVICE
+        target stackvm device string
+    --target-stackvm-keys TARGET_STACKVM_KEYS
+        target stackvm keys options
+
+    target aocl_sw_emu:
+    --target-aocl_sw_emu-from_device TARGET_AOCL_SW_EMU_FROM_DEVICE
+        target aocl_sw_emu from_device
+    --target-aocl_sw_emu-libs TARGET_AOCL_SW_EMU_LIBS
+        target aocl_sw_emu libs options
+    --target-aocl_sw_emu-model TARGET_AOCL_SW_EMU_MODEL
+        target aocl_sw_emu model string
+    --target-aocl_sw_emu-system-lib TARGET_AOCL_SW_EMU_SYSTEM_LIB
+        target aocl_sw_emu system-lib
+    --target-aocl_sw_emu-tag TARGET_AOCL_SW_EMU_TAG
+        target aocl_sw_emu tag string
+    --target-aocl_sw_emu-device TARGET_AOCL_SW_EMU_DEVICE
+        target aocl_sw_emu device string
+    --target-aocl_sw_emu-keys TARGET_AOCL_SW_EMU_KEYS
+        target aocl_sw_emu keys options
+
+    target c:
+    --target-c-unpacked-api TARGET_C_UNPACKED_API
+        target c unpacked-api
+    --target-c-from_device TARGET_C_FROM_DEVICE
+        target c from_device
+    --target-c-libs TARGET_C_LIBS
+        target c libs options
+    --target-c-constants-byte-alignment TARGET_C_CONSTANTS_BYTE_ALIGNMENT
+        target c constants-byte-alignment
+    --target-c-executor TARGET_C_EXECUTOR
+        target c executor string
+    --target-c-link-params TARGET_C_LINK_PARAMS
+        target c link-params
+    --target-c-model TARGET_C_MODEL
+        target c model string
+    --target-c-workspace-byte-alignment TARGET_C_WORKSPACE_BYTE_ALIGNMENT
+        target c workspace-byte-alignment
+    --target-c-system-lib TARGET_C_SYSTEM_LIB
+        target c system-lib
+    --target-c-tag TARGET_C_TAG
+        target c tag string
+    --target-c-interface-api TARGET_C_INTERFACE_API
+        target c interface-api string
+    --target-c-mcpu TARGET_C_MCPU
+        target c mcpu string
+    --target-c-device TARGET_C_DEVICE
+        target c device string
+    --target-c-runtime TARGET_C_RUNTIME
+        target c runtime string
+    --target-c-keys TARGET_C_KEYS
+        target c keys options
+    --target-c-march TARGET_C_MARCH
+        target c march string
+
+    target hexagon:
+    --target-hexagon-from_device TARGET_HEXAGON_FROM_DEVICE
+        target hexagon from_device
+    --target-hexagon-libs TARGET_HEXAGON_LIBS
+        target hexagon libs options
+    --target-hexagon-mattr TARGET_HEXAGON_MATTR
+        target hexagon mattr options
+    --target-hexagon-model TARGET_HEXAGON_MODEL
+        target hexagon model string
+    --target-hexagon-llvm-options TARGET_HEXAGON_LLVM_OPTIONS
+        target hexagon llvm-options options
+    --target-hexagon-mtriple TARGET_HEXAGON_MTRIPLE
+        target hexagon mtriple string
+    --target-hexagon-system-lib TARGET_HEXAGON_SYSTEM_LIB
+        target hexagon system-lib
+    --target-hexagon-mcpu TARGET_HEXAGON_MCPU
+        target hexagon mcpu string
+    --target-hexagon-device TARGET_HEXAGON_DEVICE
+        target hexagon device string
+    --target-hexagon-tag TARGET_HEXAGON_TAG
+        target hexagon tag string
+    --target-hexagon-link-params TARGET_HEXAGON_LINK_PARAMS
+        target hexagon link-params
+    --target-hexagon-keys TARGET_HEXAGON_KEYS
+        target hexagon keys options
+
+    Autoscheduler options:
+    Autoscheduler options, used when --enable-autoscheduler is provided
+
+    --cache-line-bytes CACHE_LINE_BYTES
+        the size of cache line in bytes.
+        If not specified, it will be autoset for the current machine.
+    --num-cores NUM_CORES
+        the number of device cores.
+        If not specified, it will be autoset for the current machine.
+    --vector-unit-bytes VECTOR_UNIT_BYTES
+        the width of vector units in bytes.
+        If not specified, it will be autoset for the current machine.
+    --max-shared-memory-per-block MAX_SHARED_MEMORY_PER_BLOCK
+        the max shared memory per block in bytes.
+        If not specified, it will be autoset for the current machine.
+    --max-local-memory-per-block MAX_LOCAL_MEMORY_PER_BLOCK
+        the max local memory per block in bytes.
+        If not specified, it will be autoset for the current machine.
+    --max-threads-per-block MAX_THREADS_PER_BLOCK
+        the max number of threads per block.
+        If not specified, it will be autoset for the current machine.
+    --max-vthread-extent MAX_VTHREAD_EXTENT
+        the max vthread extent.
+        If not specified, it will be autoset for the current machine.
+    --warp-size WARP_SIZE
+        the thread numbers of a warp.
+        If not specified, it will be autoset for the current machine.
+    --include-simple-tasks
+        whether to extract simple tasks that do not include complicated ops
+    --log-estimated-latency
+        whether to log the estimated latency to the file after tuning a task
+
+    autotvm options:
+    autotvm options, used when the autoscheduler is not enabled
+
+    --tuner {ga,gridsearch,random,xgb,xgb_knob,xgb-rank}
+        type of tuner to use when tuning with autotvm.
+```
