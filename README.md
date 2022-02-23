@@ -210,7 +210,7 @@ total 100496
   imagenet_stddev = np.array([0.229, 0.224, 0.225])
   norm_img_data = np.zeros(img_data.shape).astype("float32")
   for i in range(img_data.shape[0]):
-      norm_img_data[i, :, :] = (img_data[i, :, :] / 255 - imagenet_mean[i]) / imagenet_stddev[i]
+      norm_img_data[i,:,:] = (img_data[i,:,:] / 255 - imagenet_mean[i]) / imagenet_stddev[i]
 
   # Add batch dimension
   img_data = np.expand_dims(norm_img_data, axis=0)
