@@ -141,3 +141,25 @@ Intel-Media-SDK
 Intel iHD GPU (iGPU) support
 OpenCL
 ```
+## 6. Tutorial
+### 6-1. tvmc
+https://tvm.apache.org/docs/tutorial/tvmc_command_line_driver.html#compiling-and-optimizing-a-model-with-tvmc
+```bash
+$ python -m tvm.driver.tvmc
+usage: tvmc [-v] [--version] [-h] {run,tune,compile} ...
+
+TVM compiler driver
+
+optional arguments:
+  -v, --verbose       increase verbosity
+  --version           print the version and exit
+  -h, --help          show this help message and exit.
+
+commands:
+  {run,tune,compile}
+    run               run a compiled module
+    tune              auto-tune a model
+    compile           compile a model.
+
+TVMC - TVM driver command-line interface
+```
