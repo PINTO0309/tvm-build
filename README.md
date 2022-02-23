@@ -174,3 +174,13 @@ resnet50-v2-7.onnx
 One or more operators have not been tuned. Please tune your model for better performance. Use DEBUG logging level to see more details.
 ```
 ![image](https://user-images.githubusercontent.com/33194443/155353724-b440fc7c-60e7-41fd-b684-5ef33021c556.png)
+```bash
+$ mkdir model
+$ tar -xvf resnet50-v2-7-tvm.tar -C model
+$ ls -l model
+
+total 100496
+-rw-r--r-- 1 user user     89142 Feb 23 15:41 mod.json
+-rw-r--r-- 1 user user 102125470 Feb 23 15:41 mod.params
+-rwxr-xr-x 1 user user    685072 Feb 23 15:41 mod.so
+```
