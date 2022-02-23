@@ -221,9 +221,11 @@ np.savez("imagenet_cat", data=img_data)
 ```bash
 $ python preprocess.py
 ```
+![image](https://user-images.githubusercontent.com/33194443/155358586-854d785e-e2a6-41b2-812c-fe6e626187a6.png)
 ```bash
 $ python -m tvm.driver.tvmc run \
 --inputs imagenet_cat.npz \
 --output predictions.npz \
 resnet50-v2-7-tvm.tar
 ```
+![image](https://user-images.githubusercontent.com/33194443/155358960-3dddde72-4fcb-4466-960b-78720bacdb3f.png)
