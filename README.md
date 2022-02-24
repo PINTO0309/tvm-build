@@ -1042,6 +1042,7 @@ optional arguments:
     --tuner {ga,gridsearch,random,xgb,xgb_knob,xgb-rank}
         type of tuner to use when tuning with autotvm.
 ```
+### 6-2. -march=x86 -mcpu=xxx
 ```
 $ llc-14 -march=x86 -mattr=help
 
@@ -1134,6 +1135,7 @@ Available CPUs for this target:
   znver2         - Select the znver2 processor.
   znver3         - Select the znver3 processor.
 ```
+### 6-3. -march=aarch64 -mcpu=xxx
 ```
 $ llc-14 -march=aarch64 -mattr=help
 
