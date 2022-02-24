@@ -1230,3 +1230,11 @@ Available CPUs for this target:
 ```
 
 </div></details>
+
+```bash
+$ sudo pip3 install xgboost
+$ python -m tvm.driver.tvmc tune \
+--target "llvm -mcpu=x86-64-v3" \
+--output resnet50-v2-7-autotuner_records.json \
+resnet50-v2-7.onnx
+```
