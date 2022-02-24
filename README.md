@@ -1239,3 +1239,25 @@ $ python -m tvm.driver.tvmc tune \
 resnet50-v2-7.onnx
 ```
 ![image](https://user-images.githubusercontent.com/33194443/155495105-f4612704-41e7-4f81-8dd3-ebeaa1981138.png)
+```bash
+$ python -m tvm.driver.tvmc compile \
+--target "llvm" \
+--tuning-records resnet50-v2-7-autotuner_records.json  \
+--output resnet50-v2-7-tvm_autotuned.tar \
+resnet50-v2-7.onnx
+```
+![image](https://user-images.githubusercontent.com/33194443/155495476-dac4d548-65b3-417f-acee-44280d20bbcc.png)
+```bash
+$ python -m tvm.driver.tvmc run \
+--inputs imagenet_cat.npz \
+--output predictions.npz \
+resnet50-v2-7-tvm_autotuned.tar
+
+$ python postprocess.py
+
+class='n02123045 tabby, tabby cat' with probability=0.621104
+class='n02123159 tiger cat' with probability=0.356378
+class='n02124075 Egyptian cat' with probability=0.019712
+class='n02129604 tiger, Panthera tigris' with probability=0.001215
+class='n04040759 radiator' with probability=0.000262
+```
