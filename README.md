@@ -1042,3 +1042,156 @@ optional arguments:
     --tuner {ga,gridsearch,random,xgb,xgb_knob,xgb-rank}
         type of tuner to use when tuning with autotvm.
 ```
+```
+$ llc-14 -march=x86 -mattr=help
+
+Available CPUs for this target:
+
+  alderlake      - Select the alderlake processor.
+  amdfam10       - Select the amdfam10 processor.
+  athlon         - Select the athlon processor.
+  athlon-4       - Select the athlon-4 processor.
+  athlon-fx      - Select the athlon-fx processor.
+  athlon-mp      - Select the athlon-mp processor.
+  athlon-tbird   - Select the athlon-tbird processor.
+  athlon-xp      - Select the athlon-xp processor.
+  athlon64       - Select the athlon64 processor.
+  athlon64-sse3  - Select the athlon64-sse3 processor.
+  atom           - Select the atom processor.
+  barcelona      - Select the barcelona processor.
+  bdver1         - Select the bdver1 processor.
+  bdver2         - Select the bdver2 processor.
+  bdver3         - Select the bdver3 processor.
+  bdver4         - Select the bdver4 processor.
+  bonnell        - Select the bonnell processor.
+  broadwell      - Select the broadwell processor.
+  btver1         - Select the btver1 processor.
+  btver2         - Select the btver2 processor.
+  c3             - Select the c3 processor.
+  c3-2           - Select the c3-2 processor.
+  cannonlake     - Select the cannonlake processor.
+  cascadelake    - Select the cascadelake processor.
+  cooperlake     - Select the cooperlake processor.
+  core-avx-i     - Select the core-avx-i processor.
+  core-avx2      - Select the core-avx2 processor.
+  core2          - Select the core2 processor.
+  corei7         - Select the corei7 processor.
+  corei7-avx     - Select the corei7-avx processor.
+  generic        - Select the generic processor.
+  geode          - Select the geode processor.
+  goldmont       - Select the goldmont processor.
+  goldmont-plus  - Select the goldmont-plus processor.
+  haswell        - Select the haswell processor.
+  i386           - Select the i386 processor.
+  i486           - Select the i486 processor.
+  i586           - Select the i586 processor.
+  i686           - Select the i686 processor.
+  icelake-client - Select the icelake-client processor.
+  icelake-server - Select the icelake-server processor.
+  ivybridge      - Select the ivybridge processor.
+  k6             - Select the k6 processor.
+  k6-2           - Select the k6-2 processor.
+  k6-3           - Select the k6-3 processor.
+  k8             - Select the k8 processor.
+  k8-sse3        - Select the k8-sse3 processor.
+  knl            - Select the knl processor.
+  knm            - Select the knm processor.
+  lakemont       - Select the lakemont processor.
+  nehalem        - Select the nehalem processor.
+  nocona         - Select the nocona processor.
+  opteron        - Select the opteron processor.
+  opteron-sse3   - Select the opteron-sse3 processor.
+  penryn         - Select the penryn processor.
+  pentium        - Select the pentium processor.
+  pentium-m      - Select the pentium-m processor.
+  pentium-mmx    - Select the pentium-mmx processor.
+  pentium2       - Select the pentium2 processor.
+  pentium3       - Select the pentium3 processor.
+  pentium3m      - Select the pentium3m processor.
+  pentium4       - Select the pentium4 processor.
+  pentium4m      - Select the pentium4m processor.
+  pentiumpro     - Select the pentiumpro processor.
+  prescott       - Select the prescott processor.
+  rocketlake     - Select the rocketlake processor.
+  sandybridge    - Select the sandybridge processor.
+  sapphirerapids - Select the sapphirerapids processor.
+  silvermont     - Select the silvermont processor.
+  skx            - Select the skx processor.
+  skylake        - Select the skylake processor.
+  skylake-avx512 - Select the skylake-avx512 processor.
+  slm            - Select the slm processor.
+  tigerlake      - Select the tigerlake processor.
+  tremont        - Select the tremont processor.
+  westmere       - Select the westmere processor.
+  winchip-c6     - Select the winchip-c6 processor.
+  winchip2       - Select the winchip2 processor.
+  x86-64         - Select the x86-64 processor.
+  x86-64-v2      - Select the x86-64-v2 processor.
+  x86-64-v3      - Select the x86-64-v3 processor.
+  x86-64-v4      - Select the x86-64-v4 processor.
+  yonah          - Select the yonah processor.
+  znver1         - Select the znver1 processor.
+  znver2         - Select the znver2 processor.
+  znver3         - Select the znver3 processor.
+```
+```
+$ llc-14 -march=aarch64 -mattr=help
+
+Available CPUs for this target:
+
+  a64fx           - Select the a64fx processor.
+  apple-a10       - Select the apple-a10 processor.
+  apple-a11       - Select the apple-a11 processor.
+  apple-a12       - Select the apple-a12 processor.
+  apple-a13       - Select the apple-a13 processor.
+  apple-a14       - Select the apple-a14 processor.
+  apple-a7        - Select the apple-a7 processor.
+  apple-a8        - Select the apple-a8 processor.
+  apple-a9        - Select the apple-a9 processor.
+  apple-latest    - Select the apple-latest processor.
+  apple-m1        - Select the apple-m1 processor.
+  apple-s4        - Select the apple-s4 processor.
+  apple-s5        - Select the apple-s5 processor.
+  carmel          - Select the carmel processor.
+  cortex-a34      - Select the cortex-a34 processor.
+  cortex-a35      - Select the cortex-a35 processor.
+  cortex-a510     - Select the cortex-a510 processor.
+  cortex-a53      - Select the cortex-a53 processor.
+  cortex-a55      - Select the cortex-a55 processor.
+  cortex-a57      - Select the cortex-a57 processor.
+  cortex-a65      - Select the cortex-a65 processor.
+  cortex-a65ae    - Select the cortex-a65ae processor.
+  cortex-a710     - Select the cortex-a710 processor.
+  cortex-a72      - Select the cortex-a72 processor.
+  cortex-a73      - Select the cortex-a73 processor.
+  cortex-a75      - Select the cortex-a75 processor.
+  cortex-a76      - Select the cortex-a76 processor.
+  cortex-a76ae    - Select the cortex-a76ae processor.
+  cortex-a77      - Select the cortex-a77 processor.
+  cortex-a78      - Select the cortex-a78 processor.
+  cortex-a78c     - Select the cortex-a78c processor.
+  cortex-r82      - Select the cortex-r82 processor.
+  cortex-x1       - Select the cortex-x1 processor.
+  cortex-x1c      - Select the cortex-x1c processor.
+  cortex-x2       - Select the cortex-x2 processor.
+  cyclone         - Select the cyclone processor.
+  exynos-m3       - Select the exynos-m3 processor.
+  exynos-m4       - Select the exynos-m4 processor.
+  exynos-m5       - Select the exynos-m5 processor.
+  falkor          - Select the falkor processor.
+  generic         - Select the generic processor.
+  kryo            - Select the kryo processor.
+  neoverse-512tvb - Select the neoverse-512tvb processor.
+  neoverse-e1     - Select the neoverse-e1 processor.
+  neoverse-n1     - Select the neoverse-n1 processor.
+  neoverse-n2     - Select the neoverse-n2 processor.
+  neoverse-v1     - Select the neoverse-v1 processor.
+  saphira         - Select the saphira processor.
+  thunderx        - Select the thunderx processor.
+  thunderx2t99    - Select the thunderx2t99 processor.
+  thunderx3t110   - Select the thunderx3t110 processor.
+  thunderxt81     - Select the thunderxt81 processor.
+  thunderxt83     - Select the thunderxt83 processor.
+  thunderxt88     - Select the thunderxt88 processor.
+  tsv110          - Select the tsv110 processor.
+```
