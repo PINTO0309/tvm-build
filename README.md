@@ -98,6 +98,9 @@ pinto0309/ubuntu2004-cuda114-cudnn8-tensorrt823-tvm:09dev0
 --    USE_VULKAN                         : OFF
 ```
 ## 5. Environment
+
+<details><summary>List of installed tools</summary><div>
+
 ```
 TVM v0.9.dev0
 Python 3.8+
@@ -141,6 +144,9 @@ Intel-Media-SDK
 Intel iHD GPU (iGPU) support
 OpenCL
 ```
+
+</div></details>
+
 ## 6. Tutorial
 ### 6-1. tvmc
 https://tvm.apache.org/docs/tutorial/tvmc_command_line_driver.html#compiling-and-optimizing-a-model-with-tvmc
