@@ -1238,3 +1238,4 @@ $ python -m tvm.driver.tvmc tune \
 --output resnet50-v2-7-autotuner_records.json \
 resnet50-v2-7.onnx
 ```
+![image](https://user-images.githubusercontent.com/33194443/155495105-f4612704-41e7-4f81-8dd3-ebeaa1981138.png)
