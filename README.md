@@ -1261,3 +1261,29 @@ class='n02124075 Egyptian cat' with probability=0.019712
 class='n02129604 tiger, Panthera tigris' with probability=0.001215
 class='n04040759 radiator' with probability=0.000262
 ```
+- Inference performance of tuned models
+  ```bash
+  $ python -m tvm.driver.tvmc run \
+  --inputs imagenet_cat.npz \
+  --output predictions.npz  \
+  --print-time \
+  --repeat 100 \
+  resnet50-v2-7-tvm_autotuned.tar
+  
+  Execution time summary:
+  mean (ms)   median (ms)    max (ms)     min (ms)     std (ms)  
+  29.6162      29.6069      33.3455      28.5231       0.6250
+  ```
+- Inference performance of untuned models
+  ```bash
+  $ python -m tvm.driver.tvmc run \
+  --inputs imagenet_cat.npz \
+  --output predictions.npz  \
+  --print-time \
+  --repeat 100 \
+  resnet50-v2-7-tvm.tar
+
+  Execution time summary:
+  mean (ms)   median (ms)    max (ms)     min (ms)     std (ms)  
+  36.8816      36.5966      43.1287      35.5101       1.1949  
+  ```
