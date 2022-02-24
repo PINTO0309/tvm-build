@@ -269,6 +269,11 @@ class='n04040759 radiator' with probability=0.000262
 ```
 ```bash
 $ python -m tvm.driver.tvmc tune --help
+```
+
+<details><summary>parameters</summary><div>
+
+```
 usage: tvmc tune [-h]
 --target TARGET
 -o OUTPUT
@@ -1042,10 +1047,17 @@ optional arguments:
     --tuner {ga,gridsearch,random,xgb,xgb_knob,xgb-rank}
         type of tuner to use when tuning with autotvm.
 ```
+
+</div></details>
+
 ### 6-2. -march=x86 -mcpu=xxx
 ```
 $ llc-14 -march=x86 -mattr=help
+```
 
+<details><summary>CPU list</summary><div>
+
+```
 Available CPUs for this target:
 
   alderlake      - Select the alderlake processor.
@@ -1135,10 +1147,17 @@ Available CPUs for this target:
   znver2         - Select the znver2 processor.
   znver3         - Select the znver3 processor.
 ```
+
+</div></details>
+
 ### 6-3. -march=aarch64 -mcpu=xxx
 ```
 $ llc-14 -march=aarch64 -mattr=help
+```
 
+<details><summary>CPU list</summary><div>
+
+```
 Available CPUs for this target:
 
   a64fx           - Select the a64fx processor.
@@ -1197,3 +1216,5 @@ Available CPUs for this target:
   thunderxt88     - Select the thunderxt88 processor.
   tsv110          - Select the tsv110 processor.
 ```
+
+</div></details>
