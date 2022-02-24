@@ -16,6 +16,9 @@ docker run --rm -it --gpus all \
 pinto0309/ubuntu2004-cuda114-cudnn8-tensorrt823-tvm:09dev0
 ```
 ## 4. TVM Summary
+
+<details><summary>Build summary</summary><div>
+
 ```
 --   ---------------- Summary ----------------
 --   CMake version         : 3.16.3
@@ -97,6 +100,9 @@ pinto0309/ubuntu2004-cuda114-cudnn8-tensorrt823-tvm:09dev0
 --    USE_VITIS_AI                       : OFF
 --    USE_VULKAN                         : OFF
 ```
+
+</div></details>
+
 ## 5. Environment
 
 <details><summary>List of installed tools</summary><div>
