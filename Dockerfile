@@ -35,6 +35,25 @@ RUN git clone --recursive https://github.com/Maratyszcza/NNPACK.git \
     && sudo sh -c "echo '/usr/local/lib' > /etc/ld.so.conf.d/nnpack.conf" \
     && sudo ldconfig
 
+# # flatbuffers
+# RUN git clone -b v1.12.0 https://github.com/google/flatbuffers.git \
+#     && cd flatbuffers \
+#     && mkdir build \
+#     && cd build \
+#     && cmake -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Release .. \
+#     && make -j$(nproc) \
+#     && sudo make install
+
+# # TFLite static library
+# ENV APPVER=0.9.dev0
+# ENV TFVER=v2.8.0
+# RUN sudo wget https://github.com/PINTO0309/tvm-build/releases/download/${APPVER}/libtensorflow-lite.a -O /usr/local/lib/libtensorflow-lite.a \
+#     && sudo mkdir -p /usr/include/tensorflow \
+#     && cd /usr/include/tensorflow \
+#     && sudo wget https://github.com/PINTO0309/tvm-build/releases/download/0.9.dev0/tflite_headers.tar.gz \
+#     && sudo tar -zxvf tflite_headers.tar.gz \
+#     && sudo rm tflite_headers.tar.gz
+
 # TVM
 RUN git clone --recursive https://github.com/apache/tvm tvm
 RUN cd tvm \
@@ -46,8 +65,8 @@ RUN cd tvm \
     && cd build \
     && cmake \
         -DUSE_CUDA=ON \
-        # -DUSE_MICRO=ON \
-        # -DUSE_MICRO_STANDALONE_RUNTIME=ON \
+        -DUSE_MICRO=OFF \
+        -DUSE_MICRO_STANDALONE_RUNTIME=OFF \
         -DUSE_CPP_RPC=ON \
         -DUSE_GRAPH_EXECUTOR_CUDA_GRAPH=ON \
         -DUSE_PIPELINE_EXECUTOR=ON \
@@ -56,8 +75,8 @@ RUN cd tvm \
         -DUSE_MKLDNN=ON \
         -DUSE_OPENMP=ON \
         -DUSE_NNPACK=ON \
-        # -DUSE_TFLITE=ON \
-        # -DUSE_EDGETPU=ON \
+        # -DUSE_TFLITE=/usr/local/lib/libtensorflow-lite.a \
+        # -DUSE_EDGETPU=OFF \
         -DUSE_CUDNN=ON \
         -DUSE_TENSORRT_CODEGEN=ON \
         -DUSE_TENSORRT_RUNTIME=ON \
